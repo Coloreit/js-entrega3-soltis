@@ -55,7 +55,6 @@ const mailLogin = document.getElementById("emailLogin"),
     btnLogin = document.getElementById("login"),
     modalEl = document.getElementById("modalLogin"),
     modal = new bootstrap.Modal(modalEl),
-    //contTarjetas = document.getElementById("tarjetas"),
     toggles = document.querySelectorAll(".toggles"),
     contenedorTarjetas = document.querySelector(".contenedorTarjetas");
 
@@ -110,24 +109,6 @@ function presentarInfo(array, clase) {
     });
 }
 
-//ESTA SE IRÍA
-function mostrarProductos(array) {
-    contTarjetas.innerHTML = '';
-    array.forEach(element => {
-        let html = `<div class="card cardProducto" id="tarjeta${element.nombre}">
-                <h3 class="card-header" id="nombreMascota">${element.nombre}</h3>
-                <img src="${element.imagen}" alt="${element.nombre}" class="card-img-bottom" id="fotoProducto">
-                <div class="card-body">
-                    <p class="card-text" id="genero">Genero: ${element.genero}</p>
-                    <p class="card-text" id="edad">Edad: ${element.edad}</p>
-                    <p class="card-text" id="categoria">Categoria: ${element.categoria}</p>
-                    <p class="card-text" id="precio">Precio: ${element.precio} pesos</p>
-                </div>
-            </div>`;
-        contTarjetas.innerHTML += html;
-    });
-}
-
 //BUSQUEDA
 function crearTarjetas (array, contenedor){
     contenedor.innerHTML="";
@@ -152,8 +133,6 @@ function buscar(array, criterio, input){
     return array.filter(item=>item[criterio].includes(input))
 }
 
-
-
 btnLogin.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -175,7 +154,6 @@ btnLogin.addEventListener("click", (e) => {
                 saludar(recuperarUsuario(sessionStorage));
             }
             modal.hide();
-            //mostrarProductos(productos);
             crearTarjetas(productos,contenedorTarjetas);
             presentarInfo(toggles, "d-none");
         }
@@ -188,8 +166,6 @@ btnLogout.addEventListener("click", () => {
 });
 
 window.onload = () => usuarioLogueado(recuperarUsuario(localStorage));
-
-//crearTarjetas(productos,contenedorTarjetas);
 
 let busqueda = document.querySelectorAll(".inputBusqueda");
 
